@@ -190,12 +190,22 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
+      if (iterator === undefined) {
+        return _.reduce(collection, function(accumulator, element) {
+          return accumulator && element;
+        }, true);
+      } else {
+        return _.reduce(collection, function(accumulator, element) {
+          if (iterator(element) && accumulator) {return true;} else {return false;}
+        },true);
+      }
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+
   };
 
 
