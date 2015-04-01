@@ -205,7 +205,22 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    /*
+    return !_.every(collection, function(element) {
+      return !iterator(element);
+    });
+    */
 
+    // smkhalsa -- working code
+    if (iterator === undefined) {
+      return _.reduce(collection, function(accumulator, element) {
+        return accumulator || element;
+      }, false);
+    } else {
+      return _.reduce(collection, function(accumulator, element) {
+        if (iterator(element) || accumulator) {return true;} else {return false;}
+      }, false);
+    }
   };
 
 
