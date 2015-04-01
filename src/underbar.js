@@ -162,6 +162,7 @@
     if (accumulator === undefined) {
       result = collection.shift();
     }
+<<<<<<< HEAD
     if (Array.isArray(collection)) {
       for (var i=0; i<collection.length; i++) {
         result = iterator(result, collection[i]);
@@ -172,6 +173,11 @@
       }
     }
 
+=======
+    for (var i=0; i<collection.length; i++) {
+      result = iterator(result, collection[i]);
+    }
+>>>>>>> aee06ac694aad8561743bdf0f2f3e042e92b714e
     return result;
   };
 
