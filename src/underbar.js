@@ -344,10 +344,16 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
-    var arrCopy = array.slice(0);
-    for (var i=0; i<array.length; i++) {
-      
+    var arrCopy = [];
+    var hasChecked = [];
+    while (arrCopy.length < array.length) {
+      var index = Math.floor(Math.random() * array.length);
+      if (!_.contains(hasChecked, index)) {
+        arrCopy.push(array[index]);
+        hasChecked.push(index);
+      }
     }
+    return arrCopy;
   };
 
 
