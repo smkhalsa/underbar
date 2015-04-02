@@ -305,14 +305,16 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
+
   _.memoize = function(func) {
     var results = {};
     return function() {
-      var key = arguments;
-      if (!results.hasOwnProperty(arguments)) {
-        results[arguments] = func.apply(this, arguments);
+      console.log(arguments);
+      if (!results.hasOwnProperty(arguments[0])) {
+        results[arguments[0]] = func.apply(this, arguments);
+        console.log(results);
       }
-      return results[key];
+      return results[arguments[0]];
     };
   };
 
@@ -342,6 +344,10 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+    var arrCopy = array.slice(0);
+    for (var i=0; i<array.length; i++) {
+      
+    }
   };
 
 
