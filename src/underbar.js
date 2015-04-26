@@ -309,14 +309,14 @@
   _.memoize = function(func) {
     var results = {};
     return function() {
-      console.log(arguments);
-      if (!results.hasOwnProperty(arguments[0])) {
-        results[arguments[0]] = func.apply(this, arguments);
-        console.log(results);
+      var pair = func + arguments[0];
+      if (!results.hasOwnProperty(pair)) {
+        results[pair] = func.apply(this, arguments);
       }
-      return results[arguments[0]];
+      return results[pair];
     };
   };
+
 
   // Delays a function for the given number of milliseconds, and then calls
   // it with the arguments supplied.
@@ -368,6 +368,11 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    var results = [];
+      _.each(collection, function(item, index) {
+        results.push(functionOrKey.apply(item, args));
+        });
+    return results;
   };
 
   // Sort the object's values by a criterion produced by an iterator.
